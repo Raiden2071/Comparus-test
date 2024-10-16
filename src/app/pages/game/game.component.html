@@ -1,0 +1,19 @@
+<div class="game-info">
+  <input type="number" [(ngModel)]="intervalMs" placeholder="Time in ms" />
+  <button (click)="startGame()">Start</button>
+
+  <div class="score">
+    <span>Scores: {{ score() | json }}</span>
+  </div>
+</div>
+
+<div class="game-board">
+  @for (cell of cells(); track cell.id) {
+    <div
+      class="cell"
+      [ngClass]="cell.color"
+      (click)="onCellClick(cell.id)"></div>
+  }
+</div>
+
+<app-game-result-dialog [message]="(result())" />
